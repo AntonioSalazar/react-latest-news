@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment, useState, useEffect} from 'react';
+import Header from './components/Header';
+import Form from './components/Form'
 
 function App() {
+
+  //define the category
+  const [ category, setCategory ] = useState('');
+  console.log(category + 'from app')
+
+  //API Call
+  useEffect(() => {
+    const apiCall = async() => {
+      
+      const url = `https://newsapi.org/v2/top-headlines?country=mx&category=${category}&apiKey=${process.env.REACT_APP_NEWS_API}`
+      console.log(url)
+      const response = await fetch(url);
+      const news = await response.json();
+      console.log(news);
+    }
+
+    apiCall();
+  }, [category])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Header title="Latest News all the time"/>
+
+      <div className='container blue-grey lighten-3'>
+        <Form 
+          setCategory={setCategory}
+        />
+      </div>
+    </Fragment>
   );
 }
 
