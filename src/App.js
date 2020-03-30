@@ -1,6 +1,7 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import Header from './components/Header';
-import Form from './components/Form'
+import Form from './components/Form';
+import NewsList from './components/NewsList';
 
 function App() {
 
@@ -11,7 +12,6 @@ function App() {
   //API Call
   useEffect(() => {
     const apiCall = async() => {
-      
       const url = `https://newsapi.org/v2/top-headlines?country=mx&category=${category}&apiKey=${process.env.REACT_APP_NEWS_API}`
       const response = await fetch(url);
       const news = await response.json();
@@ -28,6 +28,9 @@ function App() {
       <div className='container blue-grey lighten-3'>
         <Form 
           setCategory={setCategory}
+        />
+        <NewsList
+          news={news}
         />
       </div>
     </Fragment>
