@@ -15,10 +15,11 @@ const Form = ({setCategory}) => {
 
     //use custom hook -> useSelect
     const [ category, SelectNews ] = useSelect('general', OPTIONS);
+
+
     //when user submit the category
     const newsSearch = e => {
         e.preventDefault();
-        console.log(category + 'from form.js')
         setCategory(category);
     }
 
@@ -33,7 +34,7 @@ const Form = ({setCategory}) => {
                     />
                     <div className='input-field col s12'>
                         <input
-                            type='button'
+                            type='submit'
                             className={` btn-large  teal darken-1 ${styles.btn_block}`}
                             value='Search'
                         />
@@ -44,4 +45,4 @@ const Form = ({setCategory}) => {
     )
 }
 
-export default Form
+export default Form;

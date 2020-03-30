@@ -6,17 +6,16 @@ function App() {
 
   //define the category
   const [ category, setCategory ] = useState('');
-  console.log(category + 'from app')
+  const [ news , setNews] = useState([])
 
   //API Call
   useEffect(() => {
     const apiCall = async() => {
       
       const url = `https://newsapi.org/v2/top-headlines?country=mx&category=${category}&apiKey=${process.env.REACT_APP_NEWS_API}`
-      console.log(url)
       const response = await fetch(url);
       const news = await response.json();
-      console.log(news);
+      setNews(news.articles);
     }
 
     apiCall();
