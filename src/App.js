@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Form from './components/Form';
 import NewsList from './components/NewsList';
 
+
 function App() {
 
   //define the category
@@ -36,5 +37,6 @@ function App() {
     </Fragment>
   );
 }
+
 
 export default App;
